@@ -34,15 +34,19 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#39b982' },
   /*
   ** Global CSS
   */
   css: [
+    {src: 'primevue/resources/primevue.min.css'},
+    {src: 'primevue/resources/themes/nova-light/theme.css'},
+    {src: 'primeicons/primeicons.css'},
     'ant-design-vue/dist/antd.css',
     'bootstrap-css-only/css/bootstrap.min.css',
     'mdbvue/lib/css/mdb.min.css',
     '~/assets/css/transitions.css',
+
   ],
   /*
   ** Plugins to load before mounting the App
@@ -50,6 +54,7 @@ export default {
   plugins: [
     '@/plugins/antd-ui',
     '@/plugins/mdb-vue',
+    {src:'~/plugins/primevue.js', mode: 'client'}
     // '@/plugins/vue-awesome-swiper'
   ],
   /*

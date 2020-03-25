@@ -1,17 +1,16 @@
 <template>
   <div>
     <main-navbar></main-navbar>
-    <nuxt class='mt-5' />
+    <nuxt style='margin-top:56px;' />
     <footer-page></footer-page>
   </div>
 </template>
 <script>
-  import MainNavbar from '~/components/layouts/MainNavbar'
-  import FooterPage from '~/components/layouts/FooterPage'
-
-  export default {
-    components:{ FooterPage,MainNavbar }
-  }
+import MainNavbar from '~/components/layouts/MainNavbar'
+import FooterPage from '~/components/layouts/FooterPage'
+export default {
+  components: { FooterPage, MainNavbar }
+}
 </script>
 
 <style>

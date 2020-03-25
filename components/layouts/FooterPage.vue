@@ -3,9 +3,9 @@
   <mdb-footer color="blue" class="font-small  mt-4">
     <mdb-container class="text-left py-5">
       <mdb-row>
-        <mdb-col class='text-center mb-3'>
+        <mdb-col class="text-center mb-3">
           <h5>FOLLOW US</h5>
-          <div class=''>
+          <div class="">
             <a href="#">M</a>
             <a href="#">Y</a>
             <a href="#">T</a>
@@ -42,16 +42,16 @@
 </template>
 
 <script>
-  import { mdbFooter, mdbContainer, mdbRow, mdbCol } from 'mdbvue';
-  import mdbGoogleMapsPage from '@/components/cards/MdbGoogleMap'
-  export default {
-    name: 'FooterPage',
-    components: {
-      mdbFooter,
-      mdbContainer,
-      mdbRow,
-      mdbCol,
-      mdbGoogleMapsPage,
-    }
+import { mdbFooter, mdbContainer, mdbRow, mdbCol } from 'mdbvue'
+// import mdbGoogleMapsPage from '@/components/cards/MdbGoogleMap'
+export default {
+  name: 'FooterPage',
+  components: {
+    mdbFooter,
+    mdbContainer,
+    mdbRow,
+    mdbCol
+    // mdbGoogleMapsPage,
   }
+}
 </script>
