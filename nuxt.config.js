@@ -42,10 +42,12 @@ export default {
     {src: 'primevue/resources/primevue.min.css'},
     {src: 'primevue/resources/themes/nova-light/theme.css'},
     {src: 'primeicons/primeicons.css'},
+    {src: 'vuesax/dist/vuesax.css'},
     'ant-design-vue/dist/antd.css',
     'bootstrap-css-only/css/bootstrap.min.css',
     'mdbvue/lib/css/mdb.min.css',
     '~/assets/css/transitions.css',
+
 
   ],
   /*

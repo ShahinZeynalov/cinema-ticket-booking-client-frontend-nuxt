@@ -12,8 +12,10 @@
         <nuxt-link to="/showtimes"><mdb-nav-item >Showtimes</mdb-nav-item></nuxt-link>
         <nuxt-link to="/theaters"><mdb-nav-item >Theaters</mdb-nav-item></nuxt-link>
       </mdb-navbar-nav>
-
+      <mdb-navbar-nav center>
+      </mdb-navbar-nav>
       <mdb-navbar-nav right>
+        <QuickTicket class='mr-5' />
         <nuxt-link to="/auth/register"><mdb-nav-item >Signin</mdb-nav-item></nuxt-link>
         <nuxt-link to="/auth/login"><mdb-nav-item >Login</mdb-nav-item></nuxt-link>
       </mdb-navbar-nav>
@@ -23,13 +25,15 @@
 </template>
 <script>
 import { mdbNavbar, mdbNavbarBrand, mdbNavbarNav } from 'mdbvue'
+import QuickTicket from '~/components/forms/QuickTicket'
 // import { mdbDropdown, mdbDropdownToggle, mdbDropdownMenu, mdbDropdownItem, mdbContainer, mdbNavbar, mdbNavbarBrand, mdbNavbarToggler, mdbNavbarNav, mdbNavItem } from 'mdbvue'
 export default {
   name: 'HelloWorld',
   components: {
     mdbNavbar,
     mdbNavbarBrand,
-    mdbNavbarNav
+    mdbNavbarNav,
+    QuickTicket
     // mdbNavbarToggler,
     // mdbNavItem,
     // mdbContainer,
