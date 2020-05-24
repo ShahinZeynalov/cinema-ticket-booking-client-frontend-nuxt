@@ -17,7 +17,7 @@
               </a-button-group>
             </div>
             <div class="col-6  d-inline-block justify-content-center ">
-              <city-cascader :cities="cities"/>
+              <city-cascader/>
             </div>
           </div>
         </div>

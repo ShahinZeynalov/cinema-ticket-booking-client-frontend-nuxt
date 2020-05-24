@@ -32,10 +32,10 @@
             <div class="gutter-example">
               <a-row>
                 <a-col :md='6' :xs='24' :sm='24' :xl='5'>
-                  <city-cascader :cities="cities" class='mt-4' />
+                  <city-cascader class='mt-4' />
                 </a-col>
                 <a-col :md='18' :xs='24' :sm='24' :xl='19' class='px-3'>
-                  <a-row gutter='10' class='text-center'>
+                  <a-row :gutter='10' class='text-center'>
                     <a-col
                       v-for='movie in movies'
                       :key='movie.id'

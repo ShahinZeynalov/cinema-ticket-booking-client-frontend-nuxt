@@ -15,5 +15,9 @@ export default {
   },
   getMovie (id) {
     return apiClient.get(`/api/movies/${id}`)
+  },
+  // Its written due to quick ticket filter
+  getFilteredMovies (city, theater) {
+    return apiClient.get(`/api/movies/?city=${city}&theater=${theater}`)
   }
 }

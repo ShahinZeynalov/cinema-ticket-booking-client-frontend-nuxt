@@ -13,7 +13,7 @@
           </a-col>
         </a-row>
         <a-row class='mt-4'>
-          <a-col :span='5' :style='url'>
+          <a-col :span='5'>
             <img :src="movie.poster" alt="" style='width:100%;max-height:400px;'>
           </a-col>
           <a-col :span='19' class='d-grid movie-header pl-4'>

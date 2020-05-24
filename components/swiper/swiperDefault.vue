@@ -1,9 +1,21 @@
 <template lang="html">
   <div class='recomend-body'>
     <swiper>
-      <swiper-slide class='swiper-slide' v-for='(item,index) in recomendMovies' :key='index' :spaceBetween='500'>
-        <img src="../../assets/funcat.jpg" class="img-fluid" alt="Responsive image">
-      </swiper-slide>
+      <swiper-slide style='background:lightblue' class='swiper-slide' v-for='(item,index) in recomendMovies' :key='index' :spaceBetween='500'>
+        <div>
+            <a-row>
+              <a-col>
+                <h1>SORRY WE ARE CLOSED DUE TO CORONA VIRUS</h1>
+              </a-col>
+            </a-row>
+        </div>
+        <a-row>
+          <a-col>
+            <br>
+          </a-col>
+        </a-row>
+        <div><h1> #StayAtHome</h1></div>
+       </swiper-slide>
     </swiper>
   </div>
 </template>

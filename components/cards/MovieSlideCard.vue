@@ -10,9 +10,14 @@
       <div class="items price">
       </div>
       <div class="items cart">
-        <nuxt-link :to="movie.slug">
+        <nuxt-link v-if='movie.now_playing' :to="movie.slug">
+          <a-button type="success">
+            <span>GET TICKET</span>
+          </a-button>
+        </nuxt-link>
+        <nuxt-link v-else :to="movie.slug">
           <a-button type="primary">
-            GET TICKET
+            <span>GET INFO</span>
           </a-button>
         </nuxt-link>
       </div>

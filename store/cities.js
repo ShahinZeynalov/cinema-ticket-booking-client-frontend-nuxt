@@ -23,6 +23,7 @@ export const getters = {
     const options = []
     for (const city of state.cities) {
       const theaters = []
+
       for (const theater of city.theaters) {
         theaters.push({
           value: theater.name,

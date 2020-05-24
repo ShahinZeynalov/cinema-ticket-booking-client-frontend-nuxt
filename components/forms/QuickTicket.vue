@@ -1,71 +1,74 @@
 <template>
   <div>
-    <a-button  ghost @click="openBasic()">
+    <a-button  @click="openFilter()">
       QUICK TICKET
     </a-button>
-    <Dialog header="GET YOUR TICKETS QUICKLY" :visible.sync="displayDialog" position='bottom' :style="{width: '80vw'}">
+    <Dialog header="GET YOUR TICKETS QUICKLY" :visible.sync="displayDialog" position="bottom" :style="{width: '80vw'}">
       <div class="quick-container">
-        <a-row :gutter='20'>
-          <a-col :md='6'>
-            <CityCascader :cities='cities' ></CityCascader>
+        <a-row :gutter="20">
+          <a-col :md="6" :xs="24">
+            <CityCascader />
           </a-col>
-          <a-col :md='6'>
+          <a-col :md="6" :xs="24">
             <Dropdown
               v-model="selectedMovie"
-              :options="cars"
-              optionLabel="brand"
-              size='large'
+              @change='customFetchSessionDates()'
+              :show-clear="true"
+              :options="filteredMoviesData"
+              option-label="movie"
+              size="large"
               placeholder="Select a Movie"
+              change
             >
-                <template #option="slotProps">
-                    <div class="p-dropdown-car-option">
-                        <span>{{slotProps.option.brand}}</span>
-                    </div>
-                </template>
+              <template #option="slotProps">
+                <div class="p-dropdown-car-option">
+                  <span>{{ slotProps.option.movie }}</span>
+                </div>
+              </template>
             </Dropdown>
           </a-col>
-          <a-col :md='6'>
+          <a-col :md="6" :xs="24">
             <Dropdown
               v-model="selectedDate"
-              :options="cars"
-              optionLabel="brand"
-              size='large'
+              @change="customFetchSessionTimes(selectedDate.id)"
+              :show-clear="true"
+              :options="sessionDates"
+              option-label="date"
+              size="large"
               placeholder="Select a Date"
             >
-                <template #option="slotProps">
-                    <div class="p-dropdown-car-option">
-                        <span>{{slotProps.option.brand}}</span>
-                    </div>
-                </template>
+              <template #option="slotProps">
+                <div class="p-dropdown-car-option">
+                  <span>{{ slotProps.option.date }}</span>
+                </div>
+              </template>
             </Dropdown>
           </a-col>
-          <a-col :md='6'>
+          <a-col :md="6" :xs="24">
             <Dropdown
-              disabled='true'
               v-model="selectedTime"
-              :options="cars"
-              optionLabel="brand"
-              size='large'
+              :show-clear="true"
+              :options="this.$store.state.sessions.sessionTimes"
+              option-label="hour"
+              size="large"
               placeholder="Select a Time"
             >
-                <template #option="slotProps">
-                    <div class="p-dropdown-car-option">
-                        <span>{{slotProps.option.brand}}</span>
-                    </div>
-                </template>
+              <template #option="slotProps">
+                <div class="p-dropdown-car-option">
+                  <span>{{ slotProps.option.hour }}</span>
+                </div>
+              </template>
             </Dropdown>
           </a-col>
         </a-row>
-
       </div>
-        <template #footer>
-        </template>
+      <template #footer>
+      </template>
     </Dialog>
-
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 import Dialog from 'primevue/dialog'
 import Dropdown from 'primevue/dropdown'
 import CityCascader from '~/components/CityCascader'
@@ -88,38 +91,51 @@ export default {
   data () {
     return {
       placement: 'left',
-      cities: [],
       displayDialog: false,
+      selectedTheaterData: null,
       selectedMovie: null,
       selectedDate: null,
       selectedTime: null,
-      cars: [
-        { brand: 'Audi', value: 'Audi' },
-        { brand: 'BMW', value: 'BMW' },
-        { brand: 'Fiat', value: 'Fiat' },
-        { brand: 'Honda', value: 'Honda' },
-        { brand: 'Jaguar', value: 'Jaguar' },
-        { brand: 'Mercedes', value: 'Mercedes' },
-        { brand: 'Renault', value: 'Renault' },
-        { brand: 'Volkswagen', value: 'Volkswagen' },
-        { brand: 'Volvo', value: 'Volvo' }
+      movies: [
       ]
     }
   },
   computed: {
+    ...mapState({
+      filteredMovies: state => state.movies.filteredMovies,
+      sessionDates: state => state.sessions.sessionDates
+
+    }),
+    ...mapGetters({
+      filteredMoviesData: 'movies/getFilteredMoviesOptions'
+
+    })
   },
   methods: {
+    filteredMoviesMethod () {
+      this.movies = this.filteredMovies()
+    },
     ...mapActions({
-      fetchCities: 'cities/fetchCities'
+      fetchCities: 'cities/fetchCities',
+      fetchSessionDates: 'sessions/fetchSessionDates',
+      fetchSessionTimes: 'sessions/fetchSessionTimes'
+
     }),
     fetchCitiesMethod () {
       this.fetchCities()
     },
 
-    onChange (e) {
-      this.placement = e.target.value
+    customFetchSessionDates () {
+      this.selectedDate = null
+      this.$store.commit('sessions/SET_SELECTED_MOVIE', this.selectedMovie)
+      this.fetchSessionDates()
     },
-    openBasic () {
+    customFetchSessionTimes (id) {
+      console.log('------------------------', id)
+      this.selectedTime = null
+      this.fetchSessionTimes(id)
+    },
+    openFilter () {
       this.selectedMovie = null
       this.selectedDate = null
       this.selectedTime = null
@@ -141,7 +157,7 @@ export default {
 .p-dropdown {
   height:40px;
   border-radius:4px;
-  border-color:#666666
+  border-color:black;
 }
 .p-dropdown {
   width: 100%;

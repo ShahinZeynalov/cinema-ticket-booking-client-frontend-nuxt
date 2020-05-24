@@ -5,7 +5,7 @@
         Cinema exs
       </mdb-navbar-brand>
     </nuxt-link>
-
+    <QuickTicket class='mr-5' />
     <mdb-navbar-toggler>
       <mdb-navbar-nav left>
         <nuxt-link to="/movies"><mdb-nav-item >Movies</mdb-nav-item></nuxt-link>
@@ -15,7 +15,6 @@
       <mdb-navbar-nav center>
       </mdb-navbar-nav>
       <mdb-navbar-nav right>
-        <QuickTicket class='mr-5' />
         <nuxt-link to="/auth/register"><mdb-nav-item >Signin</mdb-nav-item></nuxt-link>
         <nuxt-link to="/auth/login"><mdb-nav-item >Login</mdb-nav-item></nuxt-link>
       </mdb-navbar-nav>
