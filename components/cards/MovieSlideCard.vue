@@ -10,16 +10,11 @@
       <div class="items price">
       </div>
       <div class="items cart">
-        <nuxt-link v-if='movie.now_playing' :to="movie.slug">
-          <a-button type="success">
-            <span>GET TICKET</span>
-          </a-button>
-        </nuxt-link>
-        <nuxt-link v-else :to="movie.slug">
-          <a-button type="primary">
-            <span>GET INFO</span>
-          </a-button>
-        </nuxt-link>
+          <nuxt-link :to="movie.slug">
+            <a-button @click='goTo(movie.slug)'>
+              <span>GET TICKET {{ movie.slug }}</span>
+            </a-button>
+          </nuxt-link>
       </div>
     </div>
   </div>
@@ -28,7 +23,12 @@
 <script>
 
 export default {
-  props: ['movie']
+  props: ['movie'],
+  methods: {
+    goTo (route) {
+      this.$router.push(route)
+    }
+  }
 }
 
 </script>

@@ -1,8 +1,10 @@
 <template>
   <div>
-    <a-button  @click="openFilter()">
-      QUICK TICKET
-    </a-button>
+    <button class='quick-ticket'  @click="openFilter()">
+      <div class="float">
+        QUICK TICKET
+      </div>
+    </button>
     <Dialog header="GET YOUR TICKETS QUICKLY" :visible.sync="displayDialog" position="bottom" :style="{width: '80vw'}">
       <div class="quick-container">
         <a-row :gutter="20">
@@ -30,7 +32,7 @@
           <a-col :md="6" :xs="24">
             <Dropdown
               v-model="selectedDate"
-              @change="customFetchSessionTimes(selectedDate.id)"
+              @before-hide="customFetchSessionTimes()"
               :show-clear="true"
               :options="sessionDates"
               option-label="date"
@@ -47,6 +49,7 @@
           <a-col :md="6" :xs="24">
             <Dropdown
               v-model="selectedTime"
+              @before-hide='goToBooking'
               :show-clear="true"
               :options="this.$store.state.sessions.sessionTimes"
               option-label="hour"
@@ -119,21 +122,26 @@ export default {
       fetchCities: 'cities/fetchCities',
       fetchSessionDates: 'sessions/fetchSessionDates',
       fetchSessionTimes: 'sessions/fetchSessionTimes'
-
     }),
     fetchCitiesMethod () {
       this.fetchCities()
     },
-
+    goToBooking () {
+      if (this.selectedTime) {
+        setTimeout(() => { this.displayDialog = false }, 100)
+        setTimeout(() => { this.$router.push('booking') }, 500)
+      }
+    },
     customFetchSessionDates () {
       this.selectedDate = null
       this.$store.commit('sessions/SET_SELECTED_MOVIE', this.selectedMovie)
       this.fetchSessionDates()
     },
-    customFetchSessionTimes (id) {
-      console.log('------------------------', id)
-      this.selectedTime = null
-      this.fetchSessionTimes(id)
+    customFetchSessionTimes () {
+      if (this.selectedDate) {
+        this.selectedTime = null
+        this.fetchSessionTimes(this.selectedDate.id)
+      }
     },
     openFilter () {
       this.selectedMovie = null
@@ -151,9 +159,24 @@ export default {
 </script>
 
 <style scoped>
+.quick-ticket{
+  background-color:#ff0060;
+  border:none;
+  color:white;
+  padding:10px;
+  border-radius:5px;
+  width:150px;
+  outline:none
+}
+.quick-ticket:active{
+  background-color:purple-light;
+  color:gray;
+}
+
 .p-dropdown:not(.p-disabled):hover {
   border-color:#1890ff;
 }
+
 .p-dropdown {
   height:40px;
   border-radius:4px;
