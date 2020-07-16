@@ -10,11 +10,7 @@
       <div class="items price">
       </div>
       <div class="items cart">
-          <nuxt-link :to="movie.slug">
-            <a-button @click='goTo(movie.slug)'>
-              <span>GET TICKET {{ movie.slug }}</span>
-            </a-button>
-          </nuxt-link>
+          <button @click.prevent='goTo(movie.slug)'>GET TICKET</button>
       </div>
     </div>
   </div>
@@ -26,6 +22,7 @@ export default {
   props: ['movie'],
   methods: {
     goTo (route) {
+      console.log(route)
       this.$router.push(route)
     }
   }
@@ -73,6 +70,22 @@ export default {
   .items {
     padding-left: 20px;
     letter-spacing: 3px;
+
+    button {
+      padding: 10px;
+      color:black;
+    }
+    button:hover {
+      padding: 10px;
+      color:black;
+      background-color: #fef5df;
+    }
+    button:active {
+      padding: 10px;
+      color:black;
+      background-color: crimson;
+    }
+
   }
 
   .head {
