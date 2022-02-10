@@ -20,7 +20,7 @@
     "less-loader": "^5.0.0",
     "mdbootstrap": "^4.14.0",
     "mdbvue": "^6.5.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.0.0",
     "primeicons": "^2.0.0",
     "primevue": "^1.1.0",
